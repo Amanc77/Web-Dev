@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>responsive</title>
+    <style>
+      .container {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #c71fa5;
+        color: rgb(215, 237, 229);
+        scale: 2;
+      }
+
+      @media (max-width: 600px) {
+        .responsive {
+          background: #928039;
+          width: 100%;
+          height: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: aqua;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="responsive">this is responsive block</div>
+    </div>
+  </body>
+</html>
