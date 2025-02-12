@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript DOM Fun Examples</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      button {
+        margin: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript DOM Fun Examples</h1>
+
+    <h2>Accessing DOM Elements</h2>
+    <p id="paragraph">This is a paragraph. Click the button to change me!</p>
+    <button id="changeText">Change Text</button>
+
+    <h2>Traversing the DOM</h2>
+    <ul id="cityList">
+      <li>New York</li>
+      <li>Tokyo</li>
+      <li>Paris</li>
+      <li>London</li>
+    </ul>
+    <button id="highlightFirstCity">Highlight First City</button>
+
+    <h2>Manipulating DOM Elements</h2>
+    <p id="order">Order: Latte</p>
+    <button id="changeOrder">Change Order to Espresso</button>
+
+    <h2>Creating and Inserting Elements</h2>
+    <button id="addItem">Add a New Item to the Shopping List</button>
+    <ul id="shoppingList">
+      <li>Bread</li>
+      <li>Milk</li>
+    </ul>
+
+    <h2>Removing DOM Elements</h2>
+    <ul id="taskList">
+      <li>Task 1</li>
+      <li>Task 2</li>
+      <li>Task 3</li>
+    </ul>
+    <button id="removeLastTask">Remove Last Task</button>
+
+    <!-- //l2 -->
+
+    <h2>Event Handling in the DOM</h2>
+    <button id="clickButton">Click Me!</button>
+
+    <h2>Event Delegation</h2>
+    <ul id="teaList">
+      <li>Green Tea</li>
+      <li>Black Tea</li>
+      <li>Oolong Tea</li>
+    </ul>
+    <p>Click on any tea to select it!</p>
+
+    <h2>Form Handling</h2>
+    <form>
+      <label for="feedbackinput">Your Feedback:</label>
+      <input type="text" id="feedbackinput" placeholder="Enter feedback" />
+
+      <button id="submitFeedback">Submit Feedback</button>
+    </form>
+    <p id="feedbackdisplay"></p>
+
+    <h2>DOM Content Loaded</h2>
+    <p id="domStatus">Waiting for DOM to load...</p>
+
+    <h2>CSS Classes Manipulation</h2>
+    <p id="colorText">This text will change color!</p>
+    <button id="toggleHighlight">Toggle Highlight</button>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
