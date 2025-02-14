@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Handling</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-sm">
+        <h1 class="text-2xl font-bold mb-4 text-center text-white">Weather App</h1>
+        <form id="weather-form" class="mb-4">
+            <input type="text" id="city" class="w-full p-2 border border-gray-300 rounded mb-4 bg-gray-800 text-white" placeholder="Enter city name">
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Get Weather</button>
+        </form>
+        <div id="weather-result" class="text-center text-white">
+            
+        </div>
+    </div>
+    <div id="error-toast" class="hidden fixed top-4 right-4 bg-red-900 text-white p-4 rounded shadow-lg">
+        Error: Unable to fetch weather data.
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
