@@ -10,20 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addTaskBtn.addEventListener("click", function () {
     const taskText = todoInput.value.trim();
-    if (taskText === "") {
-      return;
+    if (!taskText) {
+      document.querySelector(".toast").classList.add("d-block");
+      setTimeout(() => {
+        document.querySelector(".toast").classList.remove("d-block");
+      }, 2000);
+    } else {
+      const newTask = {
+        id: Date.now(),
+        text: taskText,
+        completed: false,
+      };
+
+      tasks.push(newTask);
+      saveTasks();
+      renderTask(newTask);
+      todoInput.value = "";
     }
-
-    const newTask = {
-      id: Date.now(),
-      text: taskText,
-      completed: false,
-    };
-
-    tasks.push(newTask);
-    saveTasks();
-    renderTask(newTask);
-    todoInput.value = "";
   });
 
   function renderTask(task) {
