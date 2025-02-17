@@ -1,96 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("form");
-    const gridTable = document.getElementById("grid-table");
-    const toast = document.getElementById("toast");
+  let productList = document.getElementById("product-list");
+  let cartItems = document.getElementById("cart-items");
+  let emptyCart = document.getElementById("empty-cart");
+  let totalCart = document.getElementById("cart-total");
+  let totalPrice = document.getElementById("total-price");
+  let checkOutBtn = document.getElementById("checkout-btn");
+  let tPrice = 0;
 
-    // Load and render saved cards on page load
-    const savedCards = getSavedCards(); // Safely fetch saved cards
-    savedCards.forEach(renderData);
+  const products = [
+    { name: "product1", id: 1, price: 99.9 },
+    { name: "product2", id: 2, price: 79.9 },
+    { name: "product3", id: 3, price: 84.9 },
+    { name: "product4", id: 4, price: 294 },
+  ];
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
+  let cart = [];
 
-        // Get form input values
-        const productName = document.getElementById("product-name").value.trim();
-        const productPrice = document.getElementById("product-price").value.trim();
-        const productDescription = document.getElementById("product-description").value.trim();
-        const productImage = document.getElementById("product-image").value.trim();
+  // Display products
+  products.forEach((product) => {
+    let productDiv = document.createElement("div");
+    productDiv.classList.add("product");
 
-        // Validate fields
-        if (!productName || !productPrice || !productDescription || !productImage) {
-            showToast();
-            return;
-        }
+    productDiv.innerHTML = `
+      <div class="myProduct">
+        <span>${product.name} - $${product.price}</span>
+        <button class="addBtn" data-id="${product.id}">Add to Cart</button>
+      </div>
+    `;
+    productList.appendChild(productDiv);
+  });
 
-        // Create new card data
-        const cardData = {
-            name: productName,
-            price: productPrice,
-            description: productDescription,
-            image: productImage,
-        };
-
-        // Save to localStorage
-        const cards = getSavedCards(); // Fetch saved cards
-        cards.push(cardData);
-        localStorage.setItem("productCard", JSON.stringify(cards));
-
-        // Render the new card
-        renderData(cardData);
-
-        // Reset form values
-        form.reset();
-    });
-
-    // Function to safely fetch saved cards from localStorage
-    function getSavedCards() {
-        try {
-            const cards = JSON.parse(localStorage.getItem("productCard"));
-            return Array.isArray(cards) ? cards : []; // Ensure it returns an array
-        } catch {
-            return []; // Return an empty array if JSON parsing fails
-        }
+  productList.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      let productId = parseInt(e.target.getAttribute("data-id"));
+      let product = products.find((p) => p.id === productId);
+      if (product) {
+        addToCart(product);
+      }
     }
+  });
 
-    // Function to render a product card
-    function renderData(data) {
-        const gridCard = document.createElement("div");
-        gridCard.classList.add(
-            "bg-black/40",
-            "shadow-lg",
-            "rounded-lg",
-            "overflow-hidden"
-        );
-        gridCard.innerHTML = `
-            <img src="${data.image}" class="w-full h-48 object-cover">
-            <div class="p-4">
-                <h2 class="text-lg font-semibold">${data.name}</h2>
-                <h2 class="text-3xl font-semibold">₹ ${data.price}</h2>
-                <p class="text-gray-600 mt-2">${data.description}</p>
-            </div>
-        `;
-        gridTable.appendChild(gridCard);
-    }
+  function addToCart(product) {
+    cart.push(product);
+    renderCart();
+  }
 
-    // Function to show toast notifications
-    function showToast() {
-        toast.classList.remove("hidden")
-        toast.classList.add("block");
-        setTimeout(() => {
-            toast.classList.remove("block")
-            toast.classList.add("hidden");   
-        }, 3000);
-        const input = document.querySelectorAll('input');
-        input.forEach((e) => {
-            e.classList.add("error")
-            setTimeout(() => {
-                e.classList.remove("error")   
-            }, 3000);
-        })
-        const textarea = document.querySelector('textarea');
-        textarea.classList.add("error");
-        setTimeout(() => {
-            textarea.classList.remove("error")   
-        }, 3000);
+  function renderCart() {
+    cartItems.innerHTML = "";
+    tPrice = 0; // Reset price before recalculating
+
+    if (cart.length > 0) {
+      cart.forEach((item) => {
+        tPrice += item.price;
+
+        let cartItemDiv = document.createElement("div");
+        cartItemDiv.innerHTML = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItems.appendChild(cartItemDiv);
+      });
+
+      totalPrice.innerHTML = ` $${tPrice.toFixed(2)}`;
+      totalCart.classList.remove("hidden");
+      emptyCart.classList.add("hidden");
+    } else {
+      emptyCart.classList.remove("hidden");
+      totalCart.classList.add("hidden");
     }
+  }
+  checkOutBtn.addEventListener("click", () => {
+    alert("check out successfully ");
+    cart.length = 0;
+    renderCart();
+  });
 });

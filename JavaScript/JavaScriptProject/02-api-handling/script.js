@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showError();
       }
     }
+    cityInput.value = "";
   });
 
   async function fetchWeatherDetails(city) {
@@ -56,6 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
     errorMessage.classList.remove("hidden");
     errorMessage.innerText = "City not found. Please try again.";
   }
-
-  cityInput.value = "";
 });

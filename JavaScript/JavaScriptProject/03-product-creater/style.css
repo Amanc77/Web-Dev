@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #3b2a2a;
+}
+
+.container {
+  width: 400px;
+  margin: 100px auto;
+  background: rgb(70, 52, 52);
+  padding: 20px;
+  color: rgb(224, 222, 222);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+#cart-total.hidden {
+  display: none;
+}
+#product-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.product {
+  background-color: transparent;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: center;
+  border-radius: 5px;
+  color: white;
+  flex: 1 1 30%;
+  min-width: 250px;
+}
+
+.myProduct {
+  background: #412828;
+  padding: 10px;
+
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between; /* Ensures equal space between product info & button */
+  gap: 20px; /* Adds spacing between text and button */
+}
+
+.product button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  white-space: nowrap;
+  margin-left: 150px; /* Pushes button to the right */
+}
