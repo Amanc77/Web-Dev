@@ -1,0 +1,68 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#start-btn {
+  background-color: purple;
+  color: white;
+}
+
+#next-btn,
+#restart-btn {
+  background-color: #333;
+  color: white;
+}
+#restart-btn,
+#showResult-btn {
+  background-color: #0fa189;
+  color: white;
+}
+
+#choices-list {
+  list-style: none;
+  padding: 0;
+}
+
+#choices-list li {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#choices-list li:hover {
+  background-color: blueviolet;
+}
+#next-btn:hover,
+#showResult-btn:hover,
+#restart-btn:hover {
+  background-color: #0e88cf;
+}
+
+.hidden {
+  display: none;
+}
