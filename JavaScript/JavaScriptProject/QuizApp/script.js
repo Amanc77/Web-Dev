@@ -115,17 +115,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   function selectAnswer(choice) {
-    const currctAns = questions[currentQuestionIndex].answer;
+    const correctAns = questions[currentQuestionIndex].answer;
     nextButton.classList.remove("hidden");
-    if (choice === currctAns) {
+    if (choice === correctAns) {
       score++;
       return true;
     }
-    if (currentQuestionIndex >= 9) {
+    if (currentQuestionIndex >= questions.length - 1) {
       showbtn.classList.remove("hidden");
       nextButton.classList.add("hidden");
       showbtn.addEventListener("click", showResult);
     }
+    return false;
   }
   function showResult() {
     questionText.innerHTML = "";
