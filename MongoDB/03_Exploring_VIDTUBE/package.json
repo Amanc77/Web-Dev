@@ -1,0 +1,31 @@
+{
+  "name": "03_exploring_vidtube",
+  "version": "1.0.0",
+  "description": "this is inspired by youtube",
+  "type": "module",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "dev": "nodemon  src/index.js"
+  },
+  "keywords": [
+    "backend",
+    "mongoose",
+    "nodejs",
+    "js"
+  ],
+  "author": "Aman kumar",
+  "license": "ISC",
+  "dependencies": {
+    "-": "^0.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.2"
+  }
+}
