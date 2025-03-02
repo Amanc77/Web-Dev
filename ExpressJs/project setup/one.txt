@@ -1,0 +1,11 @@
+initialize a project with npm 
+
+express install
+
+we will learn dynamic routing and 
+
+ejs use as html . it will give 2+2 = 4;
+
+
+how to get data coming from frontend at backend route
+

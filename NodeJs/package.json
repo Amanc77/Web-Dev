@@ -1,0 +1,16 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "learning node js",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "testing",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "lanlantop"
+  ],
+  "author": "aman kumar",
+  "license": "ISC"
+}
