@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-zinc-900 text-white flex items-center justify-center min-h-screen"
+  >
+    <div class="min-w-full max-w-md p-6 bg-zinc-800 rounded-lg shadow-lg">
+      <h1 class="text-xl font-semibold text-center mb-4">Create a Task</h1>
+      <form action="" class="space-y-4">
+        <input
+          class="w-full px-4 py-3 bg-zinc-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text"
+          placeholder="Title goes here"
+        />
+        <textarea
+          class="w-full px-4 py-3 bg-zinc-700 rounded-md text-white placeholder-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows="4"
+          placeholder="Write your text here"
+        ></textarea>
+        <input
+          class="w-full px-5 py-3 bg-blue-600 rounded-md text-white cursor-pointer hover:bg-blue-700 transition"
+          type="submit"
+          value="Create Task"
+        />
+      </form>
+
+      <!-- ✅ FIX: Wrap tasks in a SINGLE container -->
+      <div class="tasks p-10 flex flex-wrap gap-3">
+        <div class="task w-72 hidden px-3 py-4 rounded-md bg-zinc-700">
+          <h1 class="text-white text-3xl tracking-tight">
+            Some task goes here
+          </h1>
+          <a class="text-blue-500 inline-block mt-3" href="#">read more..</a>
+        </div>
+
+        <div class="task w-72 hidden px-3 py-4 rounded-md bg-zinc-700">
+          <h1 class="text-white text-3xl tracking-tight">
+            Some task goes here
+          </h1>
+          <a class="text-blue-500 inline-block mt-3" href="#">read more..</a>
+        </div>
+
+        <div class="task w-72 hidden px-3 py-4 rounded-md bg-zinc-700">
+          <h1 class="text-white text-3xl tracking-tight">
+            Some task goes here
+          </h1>
+          <a class="text-blue-500 inline-block mt-3" href="#">read more..</a>
+        </div>
+        <h3 class="text-zinc-600">No task yet</h3>
+      </div>
+    </div>
+  </body>
+</html>
