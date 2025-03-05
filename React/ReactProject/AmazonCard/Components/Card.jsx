@@ -14,6 +14,18 @@ function Card() {
           <div className="px-6 py-4">
             <h2 className="text-xl mb-2 text-white">{ele.name}</h2>
             <p className="text-base text-white">{ele.description}</p>
+            <div className=" grid grid-cols-2">
+              <h3 className="  text-white w-1/2 bg-zinc-500 text-center rounded-2xl mt-2 px-3 py-2">
+                {ele.price}
+              </h3>
+              <button
+                className={` ${
+                  ele.inStock ? "bg-yellow-400" : "bg-red-500"
+                }  text-black rounded-2xl mt-2 px-3 py-2`}
+              >
+                {ele.inStock ? "Add to Cart" : "Out of Stock "}
+              </button>
+            </div>
           </div>
         </div>
       ))}

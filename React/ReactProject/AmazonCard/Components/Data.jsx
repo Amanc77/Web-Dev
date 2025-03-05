@@ -1,134 +1,111 @@
-const data = [
+const products = [
   {
     image:
-      "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Cute Cat",
-    description: "A beautiful cat looking at the camera.",
+      "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600",
+    name: "Laptop",
+    description: "A sleek and modern laptop for work and gaming.",
+    price: "$999",
+    inStock: true,
   },
   {
     image:
-      "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Mountain View",
-    description: "A stunning view of mountains covered in mist.",
+      "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Smartphone",
+    description:
+      "A latest-gen smartphone with an advanced camera and fast processor.",
+    price: "$699",
+    inStock: false,
   },
   {
     image:
-      "https://images.pexels.com/photos/1122637/pexels-photo-1122637.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Beach Sunset",
-    description: "Golden hour at a peaceful beach.",
+      "https://images.pexels.com/photos/4009408/pexels-photo-4009408.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Smart TV",
+    description: "A 4K Ultra HD Smart TV with HDR and streaming apps.",
+    price: "$799",
+    inStock: true,
   },
   {
     image:
-      "https://images.pexels.com/photos/1427447/pexels-photo-1427447.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Colorful Parrot",
-    description: "A vibrant blue and yellow macaw perched on a tree.",
+      "https://images.pexels.com/photos/275033/pexels-photo-275033.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Gaming Console",
+    description:
+      "A high-performance gaming console for immersive gaming experiences.",
+    price: "$499",
+    inStock: false,
   },
   {
     image:
-      "https://images.pexels.com/photos/167684/pexels-photo-167684.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Desert Dunes",
-    description: "Waves of sand forming beautiful patterns in the desert.",
+      "https://images.pexels.com/photos/7127868/pexels-photo-7127868.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Headphones",
+    description: "Noise-canceling wireless headphones for immersive sound.",
+    price: "$199",
+    inStock: true,
   },
   {
     image:
-      "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Snowy Forest",
-    description: "A winter wonderland covered in snow.",
+      "https://images.pexels.com/photos/3825572/pexels-photo-3825572.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Smartwatch",
+    description: "A smartwatch with fitness tracking and notifications.",
+    price: "$249",
+    inStock: false,
   },
   {
     image:
-      "https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&w=600",
-    name: "Wild Lion",
-    description: "A majestic lion staring intensely.",
+      "https://images.pexels.com/photos/5082577/pexels-photo-5082577.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Tablet",
+    description:
+      "A powerful tablet with a high-resolution display for work and entertainment.",
+    price: "$399",
+    inStock: true,
   },
   {
     image:
-      "https://images.pexels.com/photos/158607/cairn-fog-mystical-background-158607.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Foggy Mountains",
-    description: "A mystical view of fog covering mountains.",
+      "https://images.pexels.com/photos/301718/pexels-photo-301718.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Camera",
+    description: "A professional DSLR camera for high-quality photography.",
+    price: "$1,299",
+    inStock: false,
   },
   {
     image:
-      "https://images.pexels.com/photos/247600/pexels-photo-247600.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Hot Air Balloons",
-    description: "Colorful balloons floating in the sky.",
+      "https://images.pexels.com/photos/11018266/pexels-photo-11018266.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Microwave Oven",
+    description: "A modern microwave oven for fast and easy cooking.",
+    price: "$149",
+    inStock: true,
   },
   {
     image:
-      "https://images.pexels.com/photos/1933239/pexels-photo-1933239.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Northern Lights",
-    description: "The aurora borealis lighting up the night sky.",
-  },
-
-  {
-    image:
-      "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Cute Cat",
-    description: "A beautiful cat looking at the camera.",
+      "https://images.pexels.com/photos/1034833/pexels-photo-1034833.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Refrigerator",
+    description: "A spacious refrigerator with smart cooling technology.",
+    price: "$1,099",
+    inStock: false,
   },
   {
     image:
-      "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Mountain View",
-    description: "A stunning view of mountains covered in mist.",
+      "https://images.pexels.com/photos/1456957/pexels-photo-1456957.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Washing Machine",
+    description: "A fully automatic washing machine with smart wash programs.",
+    price: "$849",
+    inStock: true,
   },
   {
     image:
-      "https://images.pexels.com/photos/1122637/pexels-photo-1122637.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Beach Sunset",
-    description: "Golden hour at a peaceful beach.",
-  },
-
-  {
-    image:
-      "https://images.pexels.com/photos/167684/pexels-photo-167684.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Desert Dunes",
-    description: "Waves of sand forming beautiful patterns in the desert.",
+      "https://images.pexels.com/photos/4792489/pexels-photo-4792489.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Air Conditioner",
+    description: "An energy-efficient air conditioner for cooling comfort.",
+    price: "$699",
+    inStock: false,
   },
   {
     image:
-      "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Snowy Forest",
-    description: "A winter wonderland covered in snow.",
-  },
-  {
-    image:
-      "https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "City Skyline",
-    description: "A beautiful city skyline at night with bright lights.",
-  },
-  {
-    image:
-      "https://images.pexels.com/photos/3828242/pexels-photo-3828242.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Waterfall",
-    description: "A mesmerizing waterfall flowing in a lush green valley.",
-  },
-
-  {
-    image:
-      "https://images.pexels.com/photos/1043457/pexels-photo-1043457.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Road to Horizon",
-    description: "A long open road leading to the horizon.",
-  },
-
-  {
-    image:
-      "https://images.pexels.com/photos/1459395/pexels-photo-1459395.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Ancient Temple",
-    description: "A historical temple standing strong through time.",
-  },
-  {
-    image:
-      "https://images.pexels.com/photos/210186/pexels-photo-210186.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Eiffel Tower",
-    description: "A stunning view of the Eiffel Tower in Paris.",
-  },
-  {
-    image:
-      "https://images.pexels.com/photos/3014015/pexels-photo-3014015.jpeg?auto=compress&cs=tinysrgb&w=600",
-    name: "Northern Lights",
-    description: "The beautiful aurora borealis dancing in the night sky.",
+      "https://images.pexels.com/photos/1205089/pexels-photo-1205089.jpeg?auto=compress&cs=tinysrgb&w=600",
+    name: "Coffee Maker",
+    description: "A stylish coffee maker for brewing fresh coffee at home.",
+    price: "$129",
+    inStock: true,
   },
 ];
 
-export default data;
+export default products;
