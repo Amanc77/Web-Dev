@@ -1,10 +1,10 @@
 import React from "react";
-import Home from "./Components/Home";
-import User from "./Components/User";
-import Contact from "./Components/Contact";
-import About from "./Components/About";
+import Home from "../Components/Home";
+import User from "../Components/User";
+import Contact from "../Components/Contact";
+import About from "../Components/About";
 import { Routes, Route, Outlet } from "react-router-dom";
-import UserDetails from "./Components/UserDetails";
+import UserDetails from "../Components/UserDetails";
 
 function Routing() {
   return (
