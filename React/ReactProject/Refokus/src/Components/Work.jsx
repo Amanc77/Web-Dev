@@ -37,7 +37,7 @@ function Work() {
       url: "https://assets-global.website-files.com/6334198f239547d0f9cd84b3/634ef0af108a465002975acd_Showcase%20Websites%20(1).png",
       top: "65%",
       left: "55%",
-      isActive: false,
+      isActive: 1,
     },
   ]);
 
@@ -80,10 +80,27 @@ function Work() {
   });
   return (
     <div className=" w-full">
-      <div className=" max-w-screen-xl mx-auto  text-center">
+      <div className=" relative  max-w-screen-xl mx-auto  text-center">
         <h1 className=" text-[28vw] text-white font-medium  tracking-tight select-none">
           work
         </h1>
+        <div className=" absolute top-0 w-full h-full ">
+          {images.map(
+            (image, index) =>
+              image.isActive && (
+                <img
+                  className={`w-60 absolute rounded-lg -translate-x-[50%] -translate-y-[50%]`}
+                  src={image.url}
+                  style={{
+                    top: `${image.top}`,
+                    left: `${image.left}`,
+                    //   opacity: image.isActive ? 1 : 0.5,
+                  }}
+                  alt="image"
+                />
+              )
+          )}
+        </div>
       </div>
     </div>
   );
