@@ -89,6 +89,7 @@ function Work() {
             (image, index) =>
               image.isActive && (
                 <img
+                  key={index}
                   className={`w-60 absolute rounded-lg -translate-x-[50%] -translate-y-[50%]`}
                   src={image.url}
                   style={{
