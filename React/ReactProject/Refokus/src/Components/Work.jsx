@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
-function Work() {
+const Work = () => {
   const [images, setImages] = useState([
     {
       url: "https://assets-global.website-files.com/6334198f239547d0f9cd84b3/634ef09178195ce0073e38f3_Refokus%20Tools-1.png",
       top: "50%",
       left: "50%",
-      isActive: false,
+      isActive: true,
     },
     {
       url: "https://assets-global.website-files.com/6334198f239547d0f9cd84b3/634ef0accfe1b3e66bc55462_Refokus%20Tools.png",
@@ -37,14 +37,18 @@ function Work() {
       url: "https://assets-global.website-files.com/6334198f239547d0f9cd84b3/634ef0af108a465002975acd_Showcase%20Websites%20(1).png",
       top: "65%",
       left: "55%",
-      isActive: 1,
+      isActive: false,
     },
   ]);
 
   const { scrollYProgress } = useScroll();
 
+  useMotionValueEvent(scrollYProgress, "change", (e) => {
+    console.log("Page scroll: ", e);
+  });
+
   scrollYProgress.on("change", (data) => {
-    function showImages(arr) {
+    function imagesShow(arr) {
       setImages((prev) =>
         prev.map((item, index) =>
           arr.indexOf(index) === -1
@@ -56,55 +60,53 @@ function Work() {
 
     switch (Math.floor(data * 100)) {
       case 0:
-        showImages([]);
+        imagesShow([]);
+        break;
+      case 1:
+        imagesShow([0]);
         break;
       case 2:
-        showImages([0]);
+        imagesShow([0, 1]);
         break;
       case 3:
-        showImages([0, 1]);
+        imagesShow([0, 1, 2]);
         break;
-      case 5:
-        showImages([0, 1, 2]);
+      case 4:
+        imagesShow([0, 1, 2, 3]);
         break;
       case 6:
-        showImages([0, 1, 2, 3]);
-        break;
-      case 8:
-        showImages([0, 1, 2, 3, 4]);
-        break;
-      case 9:
-        showImages([0, 1, 2, 3, 4, 5, 6]);
+        imagesShow([0, 1, 2, 3, 4]);
         break;
     }
   });
+
   return (
-    <div className=" w-full">
-      <div className=" relative  max-w-screen-xl mx-auto  text-center">
-        <h1 className=" text-[28vw] text-white font-medium  tracking-tight select-none">
+    <div className="w-full mt-20">
+      <div className="relative max-w-screen-xl mx-auto text-center">
+        <h1 className="text-[30vw] leading-none font-medium select-none tracking-tight">
           work
         </h1>
-        <div className=" absolute top-0 w-full h-full ">
-          {images.map(
-            (image, index) =>
-              image.isActive && (
-                <img
-                  key={index}
-                  className={`w-60 absolute rounded-lg -translate-x-[50%] -translate-y-[50%]`}
-                  src={image.url}
-                  style={{
-                    top: `${image.top}`,
-                    left: `${image.left}`,
-                    //   opacity: image.isActive ? 1 : 0.5,
-                  }}
-                  alt="image"
-                />
-              )
-          )}
-        </div>
       </div>
+      <div className="absolute top-0 w-full h-full">
+        {images.map(
+          (elem, index) =>
+            elem.isActive && (
+              <img
+                className="absolute w-60 rounded-lg -translate-x-[50%] -translate-y-[50%]"
+                src={elem.url}
+                key={index}
+                style={{ top: elem.top, left: elem.left }}
+                alt="work"
+              />
+            )
+        )}
+      </div>
+
+      <p className="text-center py-4 font-normal text-lg text-[#919191]">
+        Web Design, Webflow Development, Creative Development
+      </p>
     </div>
   );
-}
+};
 
 export default Work;
