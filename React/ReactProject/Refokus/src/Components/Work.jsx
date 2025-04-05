@@ -42,9 +42,10 @@ const Work = () => {
   ]);
 
   const { scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollYProgress, "change", (e) => {
-    console.log("Page scroll: ", e);
+  scrollYProgress.on("change", (data) => {
+    console.log(Math.floor(data * 100));
   });
 
   scrollYProgress.on("change", (data) => {
