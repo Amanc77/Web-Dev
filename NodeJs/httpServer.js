@@ -1,10 +1,10 @@
-//http module
+//httpServer module
 
-import http from "http";
+import httpServer from "http";
 
-const port = 3017;
+const port = 3073;
 
-const server = http.createServer(function (req, res) {
+const server = httpServer.createServer(function (req, res) {
   if (req.url === "/") {
     res.end("hey  this is / url");
   } else if (req.url === "/profile") {
