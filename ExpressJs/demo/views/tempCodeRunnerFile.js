@@ -1,0 +1,1 @@
+es.send(`Number ${num} added to the data array.`);
