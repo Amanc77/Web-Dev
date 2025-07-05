@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Daily Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ✅ Icons (Phosphor Icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
+  <body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+    <!-- ✅ Navbar -->
+    <nav
+      class="bg-gray-800 shadow-lg p-4 flex justify-between items-center sticky top-0 z-10"
+    >
+      <h1
+        class="text-2xl font-bold text-yellow-400 flex items-center md:text-3xl"
+      >
+        <span class="mr-2">📊</span> Daily Tracker
+      </h1>
+      <div class="space-x-6 text-gray-300 font-medium md:space-x-8">
+        <!-- Hamburger menu for mobile -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-yellow-400 focus:outline-none">
+            <i class="ph ph-list text-2xl"></i>
+          </button>
+        </div>
+        <!-- Navigation links -->
+        <div
+          id="nav-links"
+          class="hidden md:flex md:space-x-6 text-gray-300 font-medium"
+        >
+          <a
+            href="/"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Home</a
+          >
+          <a
+            href="/create"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Create New Record</a
+          >
+          <a
+            href="/createTodaysRecord"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Create Today's Record</a
+          >
+          <a
+            href="/login"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Login</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ✅ Main Section -->
+    <main class="flex-1 max-w-4xl mx-auto mt-4 p-4 sm:p-6 md:mt-10 md:p-6">
+      <h2
+        class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-8 text-yellow-300 flex items-center"
+      >
+        <span class="mr-2">📅</span> All Records
+      </h2>
+
+      <div class="space-y-4 sm:space-y-6">
+        <% if (files.length === 0) { %>
+        <div
+          class="bg-gray-800 text-center rounded-lg p-4 sm:p-6 shadow-md text-yellow-300"
+        >
+          <p class="text-base sm:text-lg">
+            No records found. Start by creating a new record!
+          </p>
+          <p class="mt-1 sm:mt-2 text-gray-400 text-sm sm:text-base">
+            Use the 'Create New Record' option above to log your daily
+            activities, fitness goals, or financial transactions.
+          </p>
+        </div>
+        <% } else { %> <% files.forEach(file => { %>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between bg-gray-800 text-white rounded-lg p-4 sm:p-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+        >
+          <span class="text-lg sm:text-xl font-semibold mb-2 sm:mb-0"
+            ><%= file.replace('.txt', '') %></span
+          >
+          <div class="space-x-2 sm:space-x-4">
+            <a
+              href="/view/<%= file %>"
+              title="View"
+              class="hover:scale-125 transition duration-300"
+            >
+              <i
+                class="ph ph-arrow-circle-right text-xl sm:text-2xl text-green-400"
+              ></i>
+            </a>
+            <a
+              href="/edit/<%= file %>"
+              title="Edit"
+              class="hover:scale-125 transition duration-300"
+            >
+              <i
+                class="ph ph-pencil-simple text-xl sm:text-2xl text-blue-400"
+              ></i>
+            </a>
+            <a
+              href="/delete/<%= file %>"
+              title="Delete"
+              class="hover:scale-125 transition duration-300"
+            >
+              <i class="ph ph-trash text-xl sm:text-2xl text-red-400"></i>
+            </a>
+          </div>
+        </div>
+        <% }) %> <% } %>
+      </div>
+
+      <!-- Additional Content -->
+      <div class="mt-6 sm:mt-12 bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+        <h3
+          class="text-xl sm:text-2xl font-semibold text-yellow-300 mb-2 sm:mb-4"
+        >
+          About Daily Tracker
+        </h3>
+        <p class="text-gray-300 mb-1 sm:mb-2 text-sm sm:text-base">
+          Daily Tracker is your all-in-one solution for managing daily records.
+          Whether you're tracking fitness progress, monitoring expenses, or
+          keeping a personal journal, this tool helps you stay organized.
+        </p>
+        <p class="text-gray-400 text-sm sm:text-base">
+          Start today by creating your first record and experience the power of
+          seamless tracking. Sync your data anytime and access it from anywhere!
+        </p>
+      </div>
+    </main>
+
+    <!-- ✅ Footer -->
+    <footer
+      class="bg-gray-800 p-2 sm:p-4 text-center text-gray-400 border-t border-gray-700 text-xs sm:text-sm"
+    >
+      <p>© 2025 Daily Tracker. All rights reserved.</p>
+      <p class="mt-1">
+        Developed by ❤️ Aman|
+        <a
+          href="/github/Amanc77"
+          class="text-yellow-400 hover:underline text-xs sm:text-sm"
+          >Contact Us</a
+        >
+      </p>
+    </footer>
+
+    <!-- ✅ JavaScript for Mobile Menu Toggle -->
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navLinks = document.getElementById("nav-links");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>

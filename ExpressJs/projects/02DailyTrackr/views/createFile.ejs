@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create Record - Daily Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
+  <body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+    <!-- ✅ Navbar -->
+    <nav
+      class="bg-gray-800 shadow-lg p-4 flex justify-between items-center sticky top-0 z-10"
+    >
+      <h1
+        class="text-2xl font-bold text-yellow-400 flex items-center md:text-3xl"
+      >
+        <span class="mr-2">📊</span> Daily Tracker
+      </h1>
+      <div class="space-x-6 text-gray-300 font-medium md:space-x-8">
+        <!-- Hamburger menu for mobile -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-yellow-400 focus:outline-none">
+            <i class="ph ph-list text-2xl"></i>
+          </button>
+        </div>
+        <!-- Navigation links -->
+        <div
+          id="nav-links"
+          class="hidden md:flex md:space-x-6 text-gray-300 font-medium"
+        >
+          <a
+            href="/"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Home</a
+          >
+          <a
+            href="/create"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Create New Record</a
+          >
+          <a
+            href="/login"
+            class="hover:text-yellow-400 transition duration-300 block md:inline-block"
+            >Login</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ✅ Main Section -->
+    <main class="flex-1 max-w-4xl mx-auto mt-4 p-4 sm:p-6 md:mt-10 md:p-6">
+      <h2
+        class="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-8 text-yellow-300 flex items-center"
+      >
+        <span class="mr-2">➕</span> Create New Record
+      </h2>
+      <form
+        action="/create"
+        method="POST"
+        class="bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md hover:shadow-xl transition duration-300"
+      >
+        <div class="mb-4">
+          <label for="fileName" class="block text-lg mb-2">File Name</label>
+          <input
+            type="text"
+            name="fileName"
+            id="fileName"
+            required
+            class="w-full bg-gray-700 text-white p-2 sm:p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            placeholder="e.g., workout-04072025"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="content" class="block text-lg mb-2">Content</label>
+          <textarea
+            name="content"
+            id="content"
+            required
+            class="w-full h-48 sm:h-64 bg-gray-700 text-white p-2 sm:p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 resize-y"
+            placeholder="Enter your record details..."
+          ></textarea>
+        </div>
+        <div
+          class="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4"
+        >
+          <button
+            type="submit"
+            class="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center w-full sm:w-auto"
+          >
+            <i class="ph ph-plus-circle mr-2"></i> Create
+          </button>
+          <a
+            href="/"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-3 sm:px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center w-full sm:w-auto"
+          >
+            <i class="ph ph-arrow-circle-left mr-2"></i> Cancel
+          </a>
+        </div>
+      </form>
+
+      <!-- Additional Content -->
+      <div class="mt-6 sm:mt-12 bg-gray-800 rounded-lg p-4 sm:p-6 shadow-md">
+        <h3
+          class="text-xl sm:text-2xl font-semibold text-yellow-300 mb-2 sm:mb-4"
+        >
+          Getting Started
+        </h3>
+        <p class="text-gray-300 mb-1 sm:mb-2 text-sm sm:text-base">
+          Create your first record today! Timestamp: <%= new
+          Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) %> IST.
+        </p>
+        <p class="text-gray-400 text-sm sm:text-base">
+          Choose a unique file name and add your details to begin tracking your
+          daily activities effectively.
+        </p>
+      </div>
+    </main>
+
+    <!-- ✅ Footer -->
+    <footer
+      class="bg-gray-800 p-2 sm:p-4 text-center text-gray-400 border-t border-gray-700 text-xs sm:text-sm"
+    >
+      <p>© 2025 Daily Tracker. All rights reserved.</p>
+      <p class="mt-1">
+        Developed by ❤️ Aman |
+        <a
+          href="/github/Amanc77"
+          class="text-yellow-400 hover:underline text-xs sm:text-sm"
+          >GitHub</a
+        >
+      </p>
+    </footer>
+
+    <!-- ✅ JavaScript for Mobile Menu Toggle -->
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navLinks = document.getElementById("nav-links");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
