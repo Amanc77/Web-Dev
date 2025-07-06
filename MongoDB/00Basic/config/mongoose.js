@@ -1,18 +1,16 @@
 const mongoose = require("mongoose");
-const config = require("./config");
 
-const debuglog = require("debug")("development:mongooseconfig");
+const MONGO_URI =
+  "mongodb+srv://mahakal9682:eRNLRfit7SpfZTLA@cluster0.btl8zqu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-mongoose.connect("mongodb://127.0.0:27017/testDb");
+const connectToMongo = async () => {
+  try {
+    await mongoose.connect(MONGO_URI);
+    console.log("✅ MongoDB connected successfully");
+  } catch (err) {
+    console.error("❌ MongoDB  connection failed:", err.message);
+    process.exit(1);
+  }
+};
 
-const db = mongoose.connection;
-db.on("error", (err) => {
-  debuglog("MongoDB connection error:", err);
-});
-db.once("open", () => {
-  debuglog("MongoDB connection established successfully");
-});
-db.on("disconnected", () => {
-  debuglog("MongoDB connection disconnected");
-});
-module.exports = db;
+module.exports = connectToMongo;
