@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chess Game</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chess.js@1.0.0-beta.0/chess.min.js"></script>
+    <style>
+      body {
+        text-align: center;
+        font-family: sans-serif;
+      }
+      #moves {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Multiplayer Chess Game</h1>
+    <div id="board">Chess will go here</div>
+    <div id="moves"></div>
+    <script src="/js/client.js"></script>
+  </body>
+</html>
