@@ -1,14 +1,24 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const http = require("http");
-const { Server } = require("socket.io");
+const socket = require("socket.io");
 const path = require("path");
+const { Chess } = require("chess.js");
 
 // Setup
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = socket(server);
 const port = 3001;
+
+const chess = new Chess();
+let players = {};
+let currentPlayer = "w";
+
+// Set view engine and static folder
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // MongoDB Connection
 mongoose
@@ -19,11 +29,6 @@ mongoose
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB error:", err));
 
-// Set view engine and static folder
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "public")));
-
 // Routes
 app.get("/", (req, res) => {
   res.render("index");
@@ -31,7 +36,7 @@ app.get("/", (req, res) => {
 
 // Socket.io communication
 io.on("connection", (socket) => {
-  console.log("🔌 New user connected");
+  console.log("New user connected");
 
   socket.on("move", (data) => {
     // Broadcast move to other players
@@ -40,6 +45,10 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("❌ User disconnected");
+  });
+
+  socket.on("exampleEvent", () => {
+    console.log("Example event received from client");
   });
 });
 
