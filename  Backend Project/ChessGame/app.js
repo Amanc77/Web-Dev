@@ -1,104 +1,77 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const http = require("http");
-const socket = require("socket.io");
-const path = require("path");
-const { Chess } = require("chess.js");
+import express from "express";
+import { Server as SocketServer } from "socket.io";
+import { inject } from "@vercel/analytics";
 
-// Setup
+import http from "http";
+import { Chess } from "chess.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import { injectSpeedInsights } from "@vercel/speed-insights";
+
+injectSpeedInsights();
+inject();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const server = http.createServer(app);
-const io = socket(server);
-const port = 3001;
+const io = new SocketServer(server);
 
 const chess = new Chess();
 let players = {};
-let currentPlayer = "w";
 
-// Set view engine and static folder
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
 app.use(express.static(path.join(__dirname, "public")));
 
-// MongoDB Connection
-mongoose
-  .connect("mongodb://127.0.0.1:27017/chessDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB error:", err));
-
-// Routes
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { title: "Chess Game" });
 });
 
-// Socket.io communication
-io.on("connection", (uniqueSocket) => {
-  console.log("New user connected");
-
+io.on("connection", (uniquesocket) => {
+  console.log("connected");
   if (!players.white) {
-    players.white = uniqueSocket.id;
-    uniqueSocket.emit("playerRole", "white");
+    players.white = uniquesocket.id;
+    uniquesocket.emit("playerRole", "w");
   } else if (!players.black) {
-    players.black = uniqueSocket.id;
-    uniqueSocket.emit("playerRole", "black");
+    players.black = uniquesocket.id;
+    uniquesocket.emit("playerRole", "b");
   } else {
-    uniqueSocket.emit("spectatorRole");
+    uniquesocket.emit("spectatorRole");
   }
-
-  uniqueSocket.on("disconnect", () => {
-    console.log("❌ User disconnected");
-    if (uniqueSocket.id === players.white) {
+  uniquesocket.on("disconnect", () => {
+    if (uniquesocket.id === players.white) {
       delete players.white;
-    } else if (uniqueSocket.id === players.black) {
+    } else if (uniquesocket.id === players.black) {
       delete players.black;
     }
   });
-
-  uniqueSocket.on("move", (move) => {
+  uniquesocket.on("move", (move) => {
     try {
-      if (chess.turn() === "white" && uniqueSocket.id === players.white) {
-        return;
-      } else if (
-        chess.turn() === "black" &&
-        uniqueSocket.id === players.black
-      ) {
-        return;
-      }
-
-      if (chess.move(move)) {
-        io.emit("move", move);
-        console.log(`Move made: ${move.san}`);
-      } else {
-        console.error("Invalid move attempted:", move);
-      }
+      if (chess.turn() === "w" && uniquesocket.id !== players.white) return;
+      if (chess.turn() === "b" && uniquesocket.id !== players.black) return;
       const result = chess.move(move);
+
       if (result) {
-        currentPlayer = chess.turn();
-
-        io.emit("move", result);
-        io.emit("updateBoard", chess.fen());
-        console.log(`Move made: ${result.san}`);
+        io.emit("move", move);
+        io.emit("boardState", chess.fen());
       } else {
-        console.log("Invalid move attempted:", move);
-        uniqueSocket.emit("Invalid move", move);
+        console.log("Invalid move:", move);
+        uniquesocket.emit("invalidMove", move);
       }
-    } catch (error) {
-      console.error("Error processing move:", error);
-      uniqueSocket.emit("error", "Invalid move");
-      return;
+    } catch (err) {
+      console.log(err);
+      uniquesocket.emit("invalidMove", move);
     }
-  });
-
-  uniqueSocket.on("exampleEvent", () => {
-    console.log("Example event received from client");
   });
 });
 
-// Server start
-const PORT = port;
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Internal Server Error");
+});
+
+server.listen(3000, () => {
+  console.log("listening on port 3000");
 });

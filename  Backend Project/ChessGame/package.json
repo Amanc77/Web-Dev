@@ -1,23 +1,21 @@
 {
-  "name": "chessgame",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.11",
-    "chess.js": "^1.4.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "mongoose": "^8.16.3",
-    "socket.io": "^4.8.1",
-    "soket.io": "^0.0.1-security",
-    "tailwindcss": "^4.1.11"
-  }
+	"name": "chess.com",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"type": "module",
+	"scripts": {
+		"start": "node app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@vercel/analytics": "^1.3.1",
+		"@vercel/speed-insights": "^1.0.12",
+		"chess.js": "^1.0.0-beta.8",
+		"ejs": "^3.1.10",
+		"express": "^4.19.2",
+		"socket.io": "^4.7.5"
+	}
 }

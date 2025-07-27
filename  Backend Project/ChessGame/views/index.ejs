@@ -1,39 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Chess Game</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chess.js@1.0.0-beta.0/chess.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess.com</title>
+    <!-- Light mode favicon -->
+    <link
+      rel="icon"
+      href="../chess.png"
+      media="(prefers-color-scheme: light)"
+      type="image/x-icon"
+    />
+
+    <!-- Dark mode favicon -->
+    <link
+      rel="icon"
+      href="../chess.png"
+      media="(prefers-color-scheme: dark)"
+      type="image/x-icon"
+    />
+
+    <!-- Default favicon for older browsers -->
+    <link rel="icon" href="../chess.png" type="image/x-icon" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      .chessboard {
+        display: grid;
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        grid-template-rows: repeat(8, minmax(0, 1fr));
+        width: 400px;
+        height: 400px;
+        transform: rotate(0deg);
+      }
+
+      .piece.white {
+        color: white;
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+      }
+
+      .piece.black {
+        color: black;
+      }
+
+      .flipped {
+        transform: rotate(180deg);
+      }
+
+      .square {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .square.light {
+        background-color: #f0d9b5;
+      }
+
+      .square.dark {
+        background-color: #b58863;
+      }
+
+      .piece {
+        font-size: 36px;
+        cursor: pointer;
+      }
+
+      .piece.draggable {
+        cursor: grab;
+      }
+
+      .dragging {
+        opacity: 0.5;
+      }
+
+      /* Rotate pieces for black player */
+      .flipped .piece {
+        transform: rotate(180deg);
+      }
+    </style>
   </head>
-  <body>
-    <div class="w-full h-screen bg-zinc-900">
-      <div>
-        <h1 class="text-4xl text-center text-white pt-10">Chess Game</h1>
-        <div id="chessboard" class="w-full h-full flex justify-center items-center">
-          <div class="bg-gray-800 p-4 rounded-lg shadow-lg">
-            <div id="board" class="w-96 h-96"></div>
-          </div>
+
+  <body class="bg-gray-900 text-white font-sans">
+    <div class="min-h-screen flex flex-col items-center justify-between py-4">
+      <header class="w-full text-center pb-2">
+        <h1
+          class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight"
+        >
+          Chess Game
+        </h1>
+      </header>
+
+      <main class="flex flex-col items-center gap-6 w-full max-w-4xl px-4">
+        <!-- Responsive Board Container -->
+        <div class="w-full max-w-[500px] aspect-square rounded-xl shadow-xl">
+          <div
+            id="board"
+            class="chessboard w-full h-full rounded-md overflow-hidden bg-zinc-800"
+          ></div>
         </div>
-        <div class="text-center mt-4">
-          <button id="startBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Start Game    
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 w-full justify-center px-4">
+          <button
+            id="startBtn"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 w-full sm:w-auto"
+          >
+            Start Game
           </button>
-          <button id="resetBtn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-            Reset Game        
-          </button>     
-
-          <button id="joinBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+          <button
+            id="resetBtn"
+            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 w-full sm:w-auto"
+          >
+            Reset Game
+          </button>
+          <button
+            id="joinBtn"
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 w-full sm:w-auto"
+          >
             Join as Spectator
-          </button> 
-
-                  
-      </div>
+          </button>
+        </div>
+      </main>
     </div>
-    <script src="/js/client.js"></script>
     <script
-      src="https://cdn.socket.io/4.8.1/socket.io.min.js"
-      integrity="sha384-mkQ3/7FUtcGyoppY6bz/PORYoGqOl7/aSUMn2ymDOJcapfS6PHqxhRTMh1RR0Q6+"
+      src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+      integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
       crossorigin="anonymous"
     ></script>
     <script
@@ -42,8 +135,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script>
-      "/js/chessGame.js";
-    </script>
+    <script src="/js/chessgame.js"></script>
   </body>
 </html>
