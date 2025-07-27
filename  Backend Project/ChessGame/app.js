@@ -35,19 +35,64 @@ app.get("/", (req, res) => {
 });
 
 // Socket.io communication
-io.on("connection", (socket) => {
+io.on("connection", (uniqueSocket) => {
   console.log("New user connected");
 
-  socket.on("move", (data) => {
-    // Broadcast move to other players
-    socket.broadcast.emit("move", data);
-  });
+  if (!players.white) {
+    players.white = uniqueSocket.id;
+    uniqueSocket.emit("playerRole", "white");
+  } else if (!players.black) {
+    players.black = uniqueSocket.id;
+    uniqueSocket.emit("playerRole", "black");
+  } else {
+    uniqueSocket.emit("spectatorRole");
+  }
 
-  socket.on("disconnect", () => {
+  uniqueSocket.on("disconnect", () => {
     console.log("❌ User disconnected");
+    if (uniqueSocket.id === players.white) {
+      delete players.white;
+    } else if (uniqueSocket.id === players.black) {
+      delete players.black;
+    }
   });
 
-  socket.on("exampleEvent", () => {
+  uniqueSocket.on("move", (move) => {
+    try {
+      if (chess.turn() === "white" && uniqueSocket.id === players.white) {
+        return;
+      } else if (
+        chess.turn() === "black" &&
+        uniqueSocket.id === players.black
+      ) {
+        return;
+      }
+
+      if (chess.move(move)) {
+        io.emit("move", move);
+        console.log(`Move made: ${move.san}`);
+      } else {
+        console.error("Invalid move attempted:", move);
+      }
+      const result = chess.move(move);
+      if (result) {
+        currentPlayer = chess.turn();
+
+        io.emit("move", result);
+        io.emit("updateBoard", chess.fen());
+        console.log(`Move made: ${result.san}`);
+      } else {
+        console.log("Invalid move attempted:", move);
+        uniqueSocket.emit("Invalid move", move);
+      }
+    } catch (error) {
+      console.error("Error processing move:", error);
+      uniqueSocket.emit("error", "Invalid move");
+      return;
+    }
+  });
+
+  uniqueSocket.on("exampleEvent", () => {
     console.log("Example event received from client");
   });
 });

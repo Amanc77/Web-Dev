@@ -4,7 +4,7 @@
 // console.log("Client connected");
 
 // socket.on("move", (move) => {
-//   game.move(move);
+//   game.move(move P);
 //   document.getElementById("moves").innerText += `\nOpponent: ${move.san}`;
 // });
 
@@ -19,4 +19,14 @@
 // });
 
 const socket = io();
-socket.emit("exampleEvent");
+const chess = new Chess();
+const boardElement = document.getElementByClass("chessGame");
+let draggingPiece = null;
+let sourceSquare = null;
+let targetSquare = null;
+let playerRole = null;
+
+const renderBoard = () => {};
+
+const handleMove = (move) => {};
+const getPieceUnicode = (piece) => {};

@@ -11,11 +11,13 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
     "chess.js": "^1.4.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^8.16.3",
     "socket.io": "^4.8.1",
-    "soket.io": "^0.0.1-security"
+    "soket.io": "^0.0.1-security",
+    "tailwindcss": "^4.1.11"
   }
 }
