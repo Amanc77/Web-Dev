@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div class="app2">
+      <h1>My name is {{myName}}</h1>
+      <br />
+      <h2>my Role is {{myRole}}</h2>
+
+      <br />
+
+      <h3>I am from {{myPlace}}</h3>
+
+      <h1>Thank you from {{myName}}</h1>
+    </div>
+  </body>
+  <script>
+    const App = {
+      data() {
+        return {
+          myName: "Aman Kumar",
+          myRole: "Software Developer",
+          myPlace: "India",
+        };
+      },
+    };
+    Vue.createApp(App).mount(".app2");
+  </script>
+</html>

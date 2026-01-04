@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intro</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .box {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 280px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      button {
+        margin-top: 12px;
+        padding: 8px 16px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .details {
+        margin-top: 12px;
+        text-align: left;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" class="box">
+      <h2>{{ name }}</h2>
+      <button @click="showFullName">Show Full Details</button>
+
+      <div class="details" v-if="show">
+        <p><strong>Role:</strong> Frontend Developer</p>
+        <p><strong>Skills:</strong> HTML, CSS, JavaScript, Vue, React</p>
+        <p><strong>Location:</strong> India</p>
+        <p><strong>Goal:</strong> To grow as a software developer</p>
+      </div>
+    </div>
+
+    <script>
+      const App = {
+        data() {
+          return {
+            name: "Aman",
+            show: false,
+          };
+        },
+        methods: {
+          showFullName() {
+            this.name = "Aman Kumar Chaurasiya";
+            this.show = true;
+          },
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
