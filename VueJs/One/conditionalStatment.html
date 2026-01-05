@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="coditonalapp">
+      <h1>Hello, {{ name }}</h1>
+      <button @click="toggleDetails">Toggle Details</button>
+
+      <div v-if="showDetails">
+        <p><strong>Age:</strong> 25</p>
+        <p><strong>Location:</strong> India</p>
+        <p><strong>Profession:</strong> Software Developer</p>
+      </div>
+
+      <div v-else-if="!showDetails">this is else if statement</div>
+
+      <div v-else>to know more about me visit my website</div>
+
+      <div>
+        <h2 v-show="showDetails">Thank you</h2>
+      </div>
+    </div>
+  </body>
+  <script>
+    const App = {
+      data() {
+        return {
+          name: "Aman Kumar",
+          showDetails: false,
+        };
+      },
+      methods: {
+        toggleDetails() {
+          this.showDetails = !this.showDetails;
+        },
+      },
+    };
+
+    Vue.createApp(App).mount("#coditonalapp");
+  </script>
+</html>
+
+<!-- 
+// if and else condition in vue js which is used to show and hide the element based on the condition.
+
+// v-if , v-else-if , v-else and v-show directive is used for conditional statement in vue js.
+
+// v-if : it is used to render the element based on the condition if the condition is true then the element will be rendered otherwise not.
+
+// v-else-if : it is used to render the element based on the condition if the previous v-if condition is false and this condition is true then the element will be rendered otherwise not.
+
+
+// v-else : it is used to render the element if all the previous conditions are false then the element will be rendered.
+
+// v-show : it is used to show and hide the element based on the condition if the condition is true then the element will be shown otherwise it will be hidden.
+ -->

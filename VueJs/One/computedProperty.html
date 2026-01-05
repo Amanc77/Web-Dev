@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="mynewapp">
+      <h1>my first name is: {{firstName}}</h1>
+      <h2>my last name is: {{lastName}}</h2>
+      <h3>my full name is: {{fullName}}</h3>
+
+      <h2>
+        for know more visit my website
+        <a :href="websiteLink" target="_blank">{{websiteName}}</a>
+      </h2>
+    </div>
+  </body>
+
+  <script>
+    const App = {
+      data() {
+        return {
+          firstName: "Aman",
+          lastName: "Kumar Chaurasiya",
+          websiteName: "AmanKumar.site",
+          websiteLink: "https://amankumar.site",
+        };
+      },
+      computed: {
+        fullName() {
+          return this.firstName + " " + this.lastName;
+        },
+      },
+    };
+    Vue.createApp(App).mount("#mynewapp");
+  </script>
+</html>
+
+
+<!-- computed property in vue js is used to calculate and return a value based on the data properties. it is cached and only re-evaluated when the dependencies change. -->
+

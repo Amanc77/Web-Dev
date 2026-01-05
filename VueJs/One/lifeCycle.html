@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="lifecycleapp">
+      <h2>my message : {{mymessage}}</h2>
+      <br />
+
+      <button @click="changeMessage">Change Message</button>
+    </div>
+  </body>
+  <script>
+    const App = {
+      data() {
+        return {
+          mymessage:
+            "Hello guys this is aman here now i am going to teach you about life cycle hooks in vue js",
+        };
+      },
+      methods: {
+        changeMessage() {
+          this.mymessage = "badamossi nahi mittar";
+        },
+      },
+
+      beforeCreate() {
+        console.log("beforeCreate: Vue instance is being created.");
+      },
+      created() {
+        console.log("created: Vue instance has been created.");
+      },
+      beforeMount() {
+        console.log("beforeMount: Vue instance is about to be mounted.");
+      },
+      mounted() {
+        console.log("mounted: Vue instance has been mounted.");
+      },
+      beforeUpdate() {
+        console.log("beforeUpdate: Data is about to be updated.");
+      },
+      updated() {
+        console.log("updated: Data has been updated.");
+      },
+      beforeUnmount() {
+        console.log("beforeUnmount: Vue instance is about to be unmounted.");
+      },
+      unmounted() {
+        console.log("unmounted: Vue instance has been unmounted.");
+      },
+    };
+
+    Vue.createApp(App).mount("#lifecycleapp");
+  </script>
+</html>
+
+<!-- 
+Life Cycle Hooks in Vue.js 
+
+Vue.js provides a set of lifecycle hooks that allow you to execute code at specific stages of a component's lifecycle. These hooks give you the ability to perform actions such as initializing data, making API calls, or cleaning up resources.
+
+The main lifecycle hooks in Vue.js are:------
+
+1. beforeCreate: Called before the instance is created. Data and events are not yet set up.
+
+
+2. created: Called after the instance is created. Data and events are set up, but the DOM is not yet mounted.
+
+
+3. beforeMount: Called right before the mounting begins. The render function is about to be called for the first time.
+
+
+4. mounted: Called after the instance has been mounted to the DOM. You can access the DOM elements here.          
+
+
+
+5. beforeUpdate: Called when data changes, before the DOM is patched. You can perform actions before the update occurs.
+
+
+6. updated: Called after the DOM has been updated. You can perform actions after the update occurs.
+
+7. beforeUnmount: Called right before a component instance is unmounted. You can perform cleanup tasks here.
+
+8. unmounted: Called after a component instance has been unmounted. You can perform final cleanup tasks here.   
+
+ -->

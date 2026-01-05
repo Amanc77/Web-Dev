@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div class="vmodelapp">
+      <h1>Enter your name:</h1>
+      <input type="text" v-model="name" placeholder="enter your name" />
+      <h2>Your name is: {{ name }}</h2>
+    </div>
+  </body>
+
+  <script>
+    const App = {
+      data() {
+        return {
+          name: "",
+        };
+      },
+    };
+
+    Vue.createApp(App).mount(".vmodelapp");
+  </script>
+</html>
+
+
+
+<!-- v-model in vue js is used for two-way data binding between form input elements and the vue instance data properties. it allows automatic synchronization of data. -->

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="forloopapp">
+      <h1>My favorite fruits are:</h1>
+      <ul>
+        <li v-for="(fruit, index) in fruits" :key="index">
+          {{ index + 1 }}. {{ fruit }}
+        </li>
+      </ul>
+
+      <h2 @click="changeFavorite">
+        My favorite fruit is: {{ myFavoriteFruit }}
+      </h2>
+    </div>
+  </body>
+
+  <script>
+    const App = {
+      data() {
+        return {
+          fruits: ["Apple", "Banana", "Mango", "Orange", "Pineapple"],
+
+          myFavoriteFruit: "Only Banana",
+        };
+      },
+      methods: {
+        changeFavorite() {
+          this.myFavoriteFruit = "Mango";
+        },
+      },
+    };
+
+    Vue.createApp(App).mount("#forloopapp");
+  </script>
+</html>
+
+<!-- for loop in vue js is used to iterate over an array or object and render elements for each item. it is used with the v-for directive. -->

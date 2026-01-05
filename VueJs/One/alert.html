@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </script>
+</head>
+<body>
+
+    <div class="alertapp">
+        <h1>this is a alert page</h1>
+        <button @click="showMyAlert"> show alert</button>
+
+        <h2>{{firstAlert}}</h2>
+        <h2>{{secondAlert}}</h2>
+        <h3 @click="changeH3">{{myThoughts}}</h3>
+    </div>
+    
+    <script>
+        const App = {
+            data() {
+                return {
+                    firstAlert: "This is my first alert from Vuejs", 
+                    secondAlert: "This is my second alert from Vuejs",
+
+                    myThoughts: "Vuejs is a great framework"
+                }
+            },
+            methods: {
+                showMyAlert(){
+                    alert("This is my Vuejs Alert");
+                },
+                changeH3(){
+                    this.myThoughts = "I have changed my thoughts about Vuejs";
+                }
+            }
+        }
+        Vue.createApp(App).mount('.alertapp')
+    </script>
+</body>
+</html>
